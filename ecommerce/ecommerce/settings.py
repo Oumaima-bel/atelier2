@@ -86,11 +86,10 @@ DATABASES = {
     # }
     'default':{
         'ENGINE':'django.db.backends.mysql',
-        'NAME':'db_ecommerce',
+        'NAME':'DB_ECOMMERCE',
         'USER':'root',
-        'PASSWORD':'password',
-        'HOST':'localhost',
-        'PORT':'3306'
+        'PASSWORD':'root',
+        'PORT':'3307',
     }
 }
 
