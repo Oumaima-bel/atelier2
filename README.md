@@ -1,6 +1,6 @@
 # Atelier 2 : Gestion et récupération de données
 
-**Réalisé par: **
+**Réalisé par:**
 * Oumaima Belhaddad 
 * Kaka Fatima Zahra
 
