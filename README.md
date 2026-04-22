@@ -2,7 +2,7 @@
 
 **Réalisé par:**
 * Oumaima Belhaddad 
-* Kaka Fatima Zahra
+* KAKA Fatima Zahra
 
 Ce tp est une application web développée avec **Django** dans le cadre du module *Développement Web Python*.
 L’objectif est de manipuler les **modèles**, **relations**, **vues**, et **templates** afin de gérer des produits et leurs catégories. 
