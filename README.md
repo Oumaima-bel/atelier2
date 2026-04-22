@@ -1,6 +1,8 @@
 # Atelier 2 : Gestion et récupération de données
 
-Réalisé par: Oumaima Belhaddad et Kaka Fatima Zahra
+**Réalisé par: **
+* Oumaima Belhaddad 
+* Kaka Fatima Zahra
 
 Ce tp est une application web développée avec **Django** dans le cadre du module *Développement Web Python*.
 L’objectif est de manipuler les **modèles**, **relations**, **vues**, et **templates** afin de gérer des produits et leurs catégories. 
