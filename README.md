@@ -1,133 +1,109 @@
-# Atelier 2 : Gestion et récupération de données
+# Atelier 3 : Mise en place d’un système d’authentification Django
+##  Auteur
 
-**Réalisé par:**
-* Oumaima Belhaddad 
-* KAKA Fatima Zahra
+Projet réalisé Par **Fatima zahra KAKA** dans le cadre d’un atelier Django – EMI Rabat
 
-Ce tp est une application web développée avec **Django** dans le cadre du module *Développement Web Python*.
-L’objectif est de manipuler les **modèles**, **relations**, **vues**, et **templates** afin de gérer des produits et leurs catégories. 
 
----
+##  Description de l’atelier
 
-## Objectifs du TP
+Cet atelier consiste à ajouter un système d’authentification dans une application Django existante (projet e-commerce).
 
-* Comprendre le fonctionnement de l’ORM Django
-* Créer et manipuler des modèles (`Product`, `Category`)
-* Gérer les relations entre modèles (ForeignKey)
-* Implémenter des vues et routes
-* Créer des templates pour l’affichage des données
-* Gérer l’upload d’images avec Pillow
+Il permet de gérer les utilisateurs avec deux profils :
+
+* Administrateur
+* Utilisateur normal
 
 ---
 
-## Structure du projet
+##  Fonctionnalités réalisées
 
-```bash
-ecommerce/
-│
-├── ecommerce/        # Configuration principale (settings, urls...)
-├── products/         # Application principale
-│   ├── models.py
-│   ├── views.py
-│   ├── urls.py
-│   ├── templates/
-│   │   └── products/
-│   │       ├── product_list.html
-│   │       ├── product_detail.html
-│   │       ├── category_list.html
-│   │       └── category_detail.html
-│
-├── images/
-│   └── products/     # Images uploadées
-│
-└── db.sqlite3
-```
+* Inscription utilisateur
+* Connexion / Déconnexion
+* Gestion des sessions
+* Page profil protégée
+* Séparation des rôles (Admin / User)
+* Protection des pages avec `@login_required`
 
 ---
 
-## Modèles
+##  Fonctionnement général
 
-### Product
-
-* name : CharField
-* description : TextField
-* price : DecimalField
-* image : ImageField
-* category : ForeignKey (Category)
-
-### Category
-
-* name : CharField
-* description : TextField
-
-Relation : **une catégorie → plusieurs produits** (ForeignKey) 
+* L’administrateur peut gérer les produits (liste, modification, profil)
+* L’utilisateur peut consulter les produits et utiliser le panier
+* Certaines pages sont accessibles uniquement après authentification
 
 ---
 
-## Migrations
+##  Captures d’écran
 
-```bash
-python manage.py makemigrations
+---
+
+###  Authentification (avant connexion)
+
+#### Page de connexion
+
+![Login](ecommerce\screenshots\avant_connexion\connexion.png)
+
+#### Liste des produits (utilisateur non connecté)
+
+![Guest Product List](ecommerce\screenshots\avant_connexion\list_produit_sans_connexion.png)
+
+---
+
+###  Interface utilisateur
+
+#### Profil utilisateur
+
+![User Profile](ecommerce\screenshots\user\profile_user_KAKA.png)
+
+#### Détail produit
+
+![Product Detail](ecommerce\screenshots\user\detail_produit_user.png)
+
+#### Panier vide
+
+![Empty Cart](ecommerce\screenshots\user\panier_user_KAKA_vide.png)
+
+#### Panier avec produits
+
+![Cart](ecommerce\screenshots\user\panier_user_KAKA.png)
+
+---
+
+###  Interface administrateur
+
+#### Profil admin
+
+![Admin Profile](ecommerce\screenshots\admin\profile_admin.png)
+
+#### Liste des produits
+
+![Product List Admin](ecommerce\screenshots\admin\list_produit_admin.png)
+
+#### Modifier produit
+
+![Edit Product](ecommerce\screenshots\admin\modifier_produit_admin.png)
+
+---
+
+##  Structure du projet
+
+* `accounts/` → gestion des utilisateurs
+* `products/` → gestion des produits
+* `templates/` → interfaces HTML
+* `screenshots/` → captures d’écran du projet
+
+---
+
+##  Lancement du projet
+
+```bash id="runemi"
 python manage.py migrate
-```
-
----
-
-## Lancer le serveur
-
-```bash
 python manage.py runserver
 ```
 
-Puis ouvrir :
-
-```
-http://127.0.0.1:8000/products/
-```
+Accès :
+http://127.0.0.1:8000/
 
 ---
-
-## Gestion des images
-
-Dans `settings.py` :
-
-```python
-MEDIA_ROOT = BASE_DIR / 'images'
-MEDIA_URL = '/media/'
-```
-
-Dans `urls.py` principal :
-
-```python
-from django.conf import settings
-from django.conf.urls.static import static
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-```
-
----
-
-## Routes principales
-
-* `/products/` → liste des produits
-* `/products/<id>/` → détail produit
-* `/categories/` → liste des catégories
-* `/categories/<id>/` → détail catégorie
-
----
-
-## Base de données 
-
-Par défaut : **SQLite**
-
-Pour utiliser **MySQL** :
-
-1. Créer une base `db_ecommerce`
-2. Installer :
-
-```bash
-pip install mysqlclient
-```
-
-3. Modifier `DATABASES` dans `settings.py`
 
