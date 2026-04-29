@@ -1,3 +1,8 @@
+{%extends 'products/layout.html'%}
+
+{%block title%} Détaille de la catégorie {%endblock%}
+
+{%block content%}
 <h1>Produits dans la catégorie: {{ category.name }}</h1>
 <ul>
     {% for product in products %}
